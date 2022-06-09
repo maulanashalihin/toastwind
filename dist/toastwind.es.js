@@ -239,7 +239,6 @@ function create_if_block(ctx) {
   let div0;
   let t1;
   let t2;
-  let t3;
   let button;
   let div1_class_value;
   let div2_class_value;
@@ -260,8 +259,7 @@ function create_if_block(ctx) {
       t0 = space();
       div0 = element("div");
       t1 = text(ctx[1]);
-      t2 = text(".");
-      t3 = space();
+      t2 = space();
       button = element("button");
       button.innerHTML = `<span class="sr-only">Close</span> 
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>`;
@@ -273,7 +271,7 @@ function create_if_block(ctx) {
       attr(div1, "id", "toast-success");
       attr(div1, "class", div1_class_value = "absolute " + ctx[3] + " flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800");
       attr(div1, "role", "alert");
-      attr(div2, "class", div2_class_value = ctx[2].darkMode ? "" : "dark");
+      attr(div2, "class", div2_class_value = ctx[2].darkMode ? "dark" : "");
     },
     m(target, anchor) {
       insert(target, div2, anchor);
@@ -282,8 +280,7 @@ function create_if_block(ctx) {
       append(div1, t0);
       append(div1, div0);
       append(div0, t1);
-      append(div0, t2);
-      append(div1, t3);
+      append(div1, t2);
       append(div1, button);
       if (!mounted) {
         dispose = listen(button, "click", ctx[5]);
@@ -304,7 +301,7 @@ function create_if_block(ctx) {
       if (dirty & 8 && div1_class_value !== (div1_class_value = "absolute " + ctx2[3] + " flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800")) {
         attr(div1, "class", div1_class_value);
       }
-      if (dirty & 4 && div2_class_value !== (div2_class_value = ctx2[2].darkMode ? "" : "dark")) {
+      if (dirty & 4 && div2_class_value !== (div2_class_value = ctx2[2].darkMode ? "dark" : "")) {
         attr(div2, "class", div2_class_value);
       }
     },
