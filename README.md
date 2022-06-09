@@ -56,3 +56,16 @@ Live Demo: <a href="https://codepen.io/alanshalih/pen/mdXzXjZ" target="_blank">C
         </script>
         
 
+
+**7. Methods** <br>
+    
+| method name  | description |
+| ------------- |:-------------:|
+| show(text : string, option?)      | show toast     |
+| setDefault(option?)      | set default of option     | 
+
+ 
+
+## Thank You
+
+This library built using `vite, tailwind css, flowbite component and svelte`.
