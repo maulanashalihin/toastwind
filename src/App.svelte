@@ -17,9 +17,19 @@
 
   let timeout;
 
+  export function setDefault(_option)
+  { 
+    if(_option && typeof _option == 'object')
+    {
+      Object.keys(option).forEach(key=>{
+        defaultOption[key] = _option[key]
+      })
+    } 
+  }
+
   export function show(text = "Congratulation",_option = defaultOption){
     
-    if(option && typeof option == 'object')
+    if(_option && typeof _option == 'object')
     {
       Object.keys(option).forEach(key=>{
         option[key] = _option[key]
