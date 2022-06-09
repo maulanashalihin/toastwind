@@ -1,0 +1,38 @@
+{
+  "name": "toastwind",
+  "version": "0.0.28",
+  "files": [
+    "dist"
+  ],
+  "author": "Maulana Shalihin",
+  "license": "MIT",
+  "main": "./dist/toastwind.umd.js",
+  "module": "./dist/toastwind.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/toastwind.es.js",
+      "require": "./dist/toastwind.umd.js"
+    },
+    "./dist/style.css" : "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "svelte": "^3.44.0",
+    "tailwindcss": "^3.0.24",
+    "vite": "^2.9.9"
+  },
+  "keywords": [
+    "tailwind",
+    "toast",
+    "javascript",
+    "css",
+    "tailwindcss"
+  ]
+}
