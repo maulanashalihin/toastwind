@@ -273,7 +273,7 @@ function create_if_block(ctx) {
       attr(div1, "id", "toast-success");
       attr(div1, "class", div1_class_value = "absolute " + ctx[3] + " flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800");
       attr(div1, "role", "alert");
-      attr(div2, "class", div2_class_value = ctx[2].darkMode == false || "dark");
+      attr(div2, "class", div2_class_value = ctx[2].darkMode ? "" : "dark");
     },
     m(target, anchor) {
       insert(target, div2, anchor);
@@ -304,7 +304,7 @@ function create_if_block(ctx) {
       if (dirty & 8 && div1_class_value !== (div1_class_value = "absolute " + ctx2[3] + " flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800")) {
         attr(div1, "class", div1_class_value);
       }
-      if (dirty & 4 && div2_class_value !== (div2_class_value = ctx2[2].darkMode == false || "dark")) {
+      if (dirty & 4 && div2_class_value !== (div2_class_value = ctx2[2].darkMode ? "" : "dark")) {
         attr(div2, "class", div2_class_value);
       }
     },
@@ -398,16 +398,19 @@ function instance($$self, $$props, $$invalidate) {
     position: "top right",
     darkMode: false
   };
+  let option = JSON.parse(JSON.stringify(defaultOption));
   let positionClass = "right-5 top-5";
   let timeout;
-  function show(text2 = "Congratulation", option) {
+  function show(text2 = "Congratulation", _option = defaultOption) {
     if (option && typeof option == "object") {
       Object.keys(option).forEach((key) => {
-        $$invalidate(2, defaultOption[key] = option[key], defaultOption);
+        $$invalidate(2, option[key] = _option[key], option);
       });
+    } else {
+      $$invalidate(2, option = JSON.parse(JSON.stringify(defaultOption)));
     }
     $$invalidate(3, positionClass = "");
-    const arrayPosition = defaultOption.position.split(" ");
+    const arrayPosition = option.position.split(" ");
     arrayPosition.forEach((item) => {
       switch (item) {
         case "right":
@@ -430,12 +433,12 @@ function instance($$self, $$props, $$invalidate) {
       clearTimeout(timeout);
     timeout = setTimeout(() => {
       $$invalidate(0, visible = false);
-    }, defaultOption.timeout);
+    }, option.timeout);
   }
   const click_handler = () => {
     $$invalidate(0, visible = false);
   };
-  return [visible, message, defaultOption, positionClass, show, click_handler];
+  return [visible, message, option, positionClass, show, click_handler];
 }
 class App extends SvelteComponent {
   constructor(options) {

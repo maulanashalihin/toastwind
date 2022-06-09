@@ -10,24 +10,29 @@
     darkMode : false
   }
 
+ 
+  let option = JSON.parse(JSON.stringify(defaultOption))
+
   let positionClass = 'right-5 top-5'
 
   let timeout;
 
-  export function show(text = "Congratulation",option){
+  export function show(text = "Congratulation",_option = defaultOption){
     
     if(option && typeof option == 'object')
     {
       Object.keys(option).forEach(key=>{
-        defaultOption[key] = option[key]
+        option[key] = _option[key]
       })
+    }else{
+      option = JSON.parse(JSON.stringify(defaultOption))
     }
     
 
     
     positionClass = '';
 
-    const arrayPosition = defaultOption.position.split(" ")
+    const arrayPosition = option.position.split(" ")
 
     arrayPosition.forEach(item=>{
       switch(item) {
@@ -62,14 +67,14 @@
 
     timeout = setTimeout(()=>{
       visible = false;
-    },defaultOption.timeout)
+    },option.timeout)
   }
 </script>
 {#if visible}
-<div class="{defaultOption.darkMode == false || 'dark'}">
+<div class="{option.darkMode ? '' : 'dark'}">
 
   <div id="toast-success" class="absolute {positionClass} flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
-    {#if defaultOption.status == 'error'}
+    {#if option.status == 'error'}
     <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </div>
