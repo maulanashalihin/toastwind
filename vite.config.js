@@ -5,7 +5,7 @@ const path = require("path")
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/main.js'),
+      entry: path.resolve(__dirname, 'src/toastwind.js'),
       name: 'toastwind',
       fileName: (format) => `toastwind.${format}.js`
     },
